@@ -22,10 +22,10 @@ class classroom_legacy::master::windows {
   $destination = "${publicdir}/current"
 
   file { "${destination}/setup_windows.ps1":
-    source => "puppet:///modules/classroom/windows/setup_windows.ps1",
+    source => "puppet:///modules/classroom_legacy/windows/setup_windows.ps1",
   }
 
   file { "${destination}/windows-x86_64/setup_classroom.ps1":
-    source => "puppet:///modules/classroom/windows/setup_classroom.ps1",
+    source => "puppet:///modules/classroom_legacy/windows/setup_classroom.ps1",
   }
 }

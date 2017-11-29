@@ -39,7 +39,7 @@ class classroom_legacy::course::puppetize (
     file { '/usr/local/bin/validate_classification.rb':
       ensure => file,
       mode   => '0755',
-      source => 'puppet:///modules/classroom/validation/puppetize.rb',
+      source => 'puppet:///modules/classroom_legacy/validation/puppetize.rb',
     }
   }
 

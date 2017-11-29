@@ -24,7 +24,7 @@ class classroom_legacy::master (
     owner  => 'pe-puppet',
     group  => 'pe-puppet',
     mode   => '0644',
-    source => 'puppet:///modules/classroom/classroom.pp',
+    source => 'puppet:///modules/classroom_legacy/classroom.pp',
   }
 
   # if configured to do so, configure repos & environments on the master. This

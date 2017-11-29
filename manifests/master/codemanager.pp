@@ -32,7 +32,7 @@ class classroom_legacy::master::codemanager (
   }
   file { "${hieradata}/sources.yaml":
     ensure  => file,
-    content => epp('classroom/hiera/data/sources.yaml.epp', {
+    content => epp('classroom_legacy/hiera/data/sources.yaml.epp', {
                                       'gitserver'     => $gitserver,
                                       'control_owner' => $control_owner,
                                       'control_repo'  => $control_repo }),

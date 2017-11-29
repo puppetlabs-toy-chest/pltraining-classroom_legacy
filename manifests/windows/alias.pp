@@ -14,7 +14,7 @@ class classroom_legacy::windows::alias {
 
   file { 'alias_psd':
     ensure  => file,
-    source  => "puppet:///modules/classroom/windows/${psm_file}",
+    source  => "puppet:///modules/classroom_legacy/windows/${psm_file}",
     path		=> "${alias_dir}/${psm_file}"
   }
 

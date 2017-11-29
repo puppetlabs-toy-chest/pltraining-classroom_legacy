@@ -50,7 +50,7 @@ class classroom_legacy::agent::hiera (
 
     file { "${workdir}/hiera.yaml":
       ensure  => file,
-      source  => 'puppet:///modules/classroom/hiera/hiera.agent.yaml',
+      source  => 'puppet:///modules/classroom_legacy/hiera/hiera.agent.yaml',
       replace => false,
     }
 
@@ -64,7 +64,7 @@ class classroom_legacy::agent::hiera (
     unless defined('$puppetlabs_class') {
       file { "${confdir}/hiera.yaml":
         ensure  => file,
-        source  => 'puppet:///modules/classroom/hiera/hiera.agent.yaml',
+        source  => 'puppet:///modules/classroom_legacy/hiera/hiera.agent.yaml',
       }
     }
   }
@@ -75,13 +75,13 @@ class classroom_legacy::agent::hiera (
       owner  => 'root',
       group  => 'root',
       mode   => '0777',
-      source => 'puppet:///modules/classroom/hiera_explain.rb',
+      source => 'puppet:///modules/classroom_legacy/hiera_explain.rb',
     }
   }
 
   file { "${hieradata}/common.yaml":
     ensure  => file,
-    source  => 'puppet:///modules/classroom/hiera/data/common.yaml',
+    source  => 'puppet:///modules/classroom_legacy/hiera/data/common.yaml',
     replace => false,
   }
 }

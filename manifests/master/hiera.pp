@@ -18,7 +18,7 @@ class classroom_legacy::master::hiera {
   unless defined('$puppetlabs_class') {
     file { "${classroom_legacy::params::confdir}/hiera.yaml":
       ensure  => file,
-      content => epp('classroom/hiera/hiera.master.yaml.epp', { 'hieradata' => $hieradata })
+      content => epp('classroom_legacy/hiera/hiera.master.yaml.epp', { 'hieradata' => $hieradata })
     }
   }
 
@@ -40,20 +40,20 @@ class classroom_legacy::master::hiera {
   #                       they can use the `overrides` level.
   file { "${hieradata}/classroom.yaml":
     ensure  => file,
-    source  => 'puppet:///modules/classroom/hiera/data/classroom.yaml',
+    source  => 'puppet:///modules/classroom_legacy/hiera/data/classroom.yaml',
   }
 
   # This is designed for editing during classroom demos. Don't overwrite it.
   file { "${hieradata}/common.yaml":
     ensure  => file,
-    source  => 'puppet:///modules/classroom/hiera/data/common.yaml',
+    source  => 'puppet:///modules/classroom_legacy/hiera/data/common.yaml',
     replace => false,
   }
 
   # overrides for the master, but allow the instructor to edit
   file { "${hieradata}/master.puppetlabs.vm.yaml":
     ensure  => file,
-    source  => 'puppet:///modules/classroom/hiera/data/master.puppetlabs.vm.yaml',
+    source  => 'puppet:///modules/classroom_legacy/hiera/data/master.puppetlabs.vm.yaml',
     replace => false,
   }
 

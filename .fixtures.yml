@@ -8,7 +8,7 @@ fixtures:
     abalone: "binford2k/abalone"
     firewall: "puppetlabs/firewall"
     chocolatey: "chocolatey/chocolatey"
-    graphite: 
+    graphite:
       repo: "dwerder/graphite"
       ref: "5.16.1"
     grafana: "dwerder/grafana"
@@ -22,7 +22,7 @@ fixtures:
     haproxy: "puppetlabs/haproxy"
     inifile: "puppetlabs/inifile"
     mysql: "puppetlabs/mysql"
-    ntp: 
+    ntp:
       repo: "puppetlabs/ntp"
       ref: "4.2.0"
     pe_puppetserver_gem: "puppetlabs/pe_puppetserver_gem"
@@ -41,4 +41,4 @@ fixtures:
     ssh: "attachmentgenie/ssh"
     showoff: "pltraining/showoff"
   symlinks:
-    classroom: "#{source_dir}"
+    classroom_legacy: "#{source_dir}"

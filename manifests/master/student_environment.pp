@@ -35,14 +35,14 @@ class classroom_legacy::master::student_environment {
     # This is a copy of site.pp used for the architect class
     file { "${environment}/manifests/site.pp":
       ensure  => file,
-      source  => 'puppet:///modules/classroom/site-architect.pp',
+      source  => 'puppet:///modules/classroom_legacy/site-architect.pp',
       replace => false,
     }
 
     # intentionally broken example code
     file { "${environment}/modules/cowsay":
       ensure  => directory,
-      source  => 'puppet:///modules/classroom/example/cowsay',
+      source  => 'puppet:///modules/classroom_legacy/example/cowsay',
       replace => false,
       recurse => true,
     }

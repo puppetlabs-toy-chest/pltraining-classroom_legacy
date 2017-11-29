@@ -6,7 +6,7 @@ class classroom_legacy::master::sudoers {
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
-    source => 'puppet:///modules/classroom/sudoers.classroom',
+    source => 'puppet:///modules/classroom_legacy/sudoers.classroom',
   }
 }
 

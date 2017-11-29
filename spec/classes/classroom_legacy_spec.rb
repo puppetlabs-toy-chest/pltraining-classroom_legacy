@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'classroom' do
+describe 'classroom_legacy' do
 
   default_params = { :manage_repos => true,
                      :time_servers => ["time.apple.com"] }

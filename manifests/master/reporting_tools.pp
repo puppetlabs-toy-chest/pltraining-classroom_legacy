@@ -11,7 +11,7 @@ class classroom_legacy::master::reporting_tools {
 
   file { '/usr/local/bin/get_environment_version.sh':
     ensure => file,
-    source => 'puppet:///modules/classroom/get_environment_version.sh',
+    source => 'puppet:///modules/classroom_legacy/get_environment_version.sh',
   }
 
 }

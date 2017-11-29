@@ -19,19 +19,19 @@ class classroom_legacy::master::metrics {
 
   file { '/usr/local/bin/puppetserver_compiles':
     ensure => file,
-    source => 'puppet:///modules/classroom/metrics/puppetserver_compiles',
+    source => 'puppet:///modules/classroom_legacy/metrics/puppetserver_compiles',
   }
 
   # JMX wrapper script that calls the actual metrics in the context of the JVM
   file { '/usr/local/bin/puppetserver_metrics':
     ensure => file,
-    source => 'puppet:///modules/classroom/metrics/puppetserver_metrics',
+    source => 'puppet:///modules/classroom_legacy/metrics/puppetserver_metrics',
   }
 
   # the individual JMX metrics called by the wrapper script
   file { '/usr/local/bin/metrics':
     ensure  => directory,
     recurse => true,
-    source  => 'puppet:///modules/classroom/metrics/metrics',
+    source  => 'puppet:///modules/classroom_legacy/metrics/metrics',
   }
 }

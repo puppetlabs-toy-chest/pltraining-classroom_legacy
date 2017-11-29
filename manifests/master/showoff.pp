@@ -99,7 +99,7 @@ class classroom_legacy::master::showoff (
     owner  => 'root',
     group  => 'root',
     mode   => '0600',
-    source => 'puppet:///modules/classroom/showoff.pem',
+    source => 'puppet:///modules/classroom_legacy/showoff.pem',
     before => Stunnel::Tun['showoff-ssl'],
   }
 
@@ -118,7 +118,7 @@ class classroom_legacy::master::showoff (
       owner  => 'root',
       group  => 'root',
       mode   => '0644',
-      source => 'puppet:///modules/classroom/selinux/stunnel-showoff.pp',
+      source => 'puppet:///modules/classroom_legacy/selinux/stunnel-showoff.pp',
     }
 
     selmodule { 'stunnel-showoff':

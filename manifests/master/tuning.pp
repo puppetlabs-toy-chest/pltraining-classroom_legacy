@@ -33,7 +33,7 @@ class classroom_legacy::master::tuning (
       owner         => 'root',
       group         => 'root',
       mode          => '0644',
-      content       => template('classroom/hiera/data/tuning.yaml.erb'),
+      content       => template('classroom_legacy/hiera/data/tuning.yaml.erb'),
       notify        => Class['puppet_enterprise::profile::master',
                              'puppet_enterprise::profile::console',
                              'puppet_enterprise::profile::orchestrator',

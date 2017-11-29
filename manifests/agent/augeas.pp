@@ -16,7 +16,7 @@ class classroom_legacy::agent::augeas {
         owner  => 'root',
         group  => 'root',
         mode   => '0644',
-        source => 'puppet:///modules/classroom/krb5.aug',
+        source => 'puppet:///modules/classroom_legacy/krb5.aug',
       }
     }
   }

@@ -62,7 +62,7 @@ define classroom_legacy::agent::workdir (
 
       file { "${workdir}/.gitattributes":
         ensure  => file,
-        source  => 'puppet:///modules/classroom/dot_gitattributes_windows',
+        source  => 'puppet:///modules/classroom_legacy/dot_gitattributes_windows',
         require => Exec["initialize ${name} repo"],
       }
     }
@@ -75,12 +75,12 @@ define classroom_legacy::agent::workdir (
       }
 
       file { "${workdir}/manifests/site.pp":
-        source  => 'puppet:///modules/classroom/site.pp',
+        source  => 'puppet:///modules/classroom_legacy/site.pp',
         replace => false,
       }
 
       file { "${workdir}/manifests/classroom.pp":
-        source  => 'puppet:///modules/classroom/classroom.pp',
+        source  => 'puppet:///modules/classroom_legacy/classroom.pp',
         replace => false,
       }
 
@@ -97,7 +97,7 @@ define classroom_legacy::agent::workdir (
       }
 
       file { "${workdir}/modules/profile/manifests/base.pp":
-        source  => 'puppet:///modules/classroom/modules/profile/manifests/base.pp',
+        source  => 'puppet:///modules/classroom_legacy/modules/profile/manifests/base.pp',
         replace => false,
       }
 
@@ -110,7 +110,7 @@ define classroom_legacy::agent::workdir (
       }
 
       file { "${workdir}/modules/role/manifests/classroom.pp":
-        source  => 'puppet:///modules/classroom/modules/role/manifests/classroom.pp',
+        source  => 'puppet:///modules/classroom_legacy/modules/role/manifests/classroom.pp',
         replace => false,
       }
 
@@ -135,14 +135,14 @@ define classroom_legacy::agent::workdir (
 
     if $::osfamily != 'windows' {
       file { "${workdir}/.git/hooks/pre-commit":
-        source  => 'puppet:///modules/classroom/pre-commit',
+        source  => 'puppet:///modules/classroom_legacy/pre-commit',
         mode    => '0755',
         require => Exec["initialize ${name} repo"],
       }
     }
 
     file { "${workdir}/.gitignore":
-      source  => 'puppet:///modules/classroom/dot_gitignore',
+      source  => 'puppet:///modules/classroom_legacy/dot_gitignore',
       require => Exec["initialize ${name} repo"],
     }
 

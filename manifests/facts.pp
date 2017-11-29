@@ -17,6 +17,6 @@ class classroom_legacy::facts (
 
   file { "${dot_d}/puppetlabs.txt":
     ensure  => file,
-    content => template('classroom/facts.txt.erb'),
+    content => template('classroom_legacy/facts.txt.erb'),
   }
 }

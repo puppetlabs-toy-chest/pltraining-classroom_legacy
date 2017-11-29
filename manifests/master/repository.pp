@@ -40,7 +40,7 @@ define classroom_legacy::master::repository (
 
     file { "${repo_root}/${name}.git/hooks/post-update":
       ensure  => file,
-      content => template('classroom/post-update.erb'),
+      content => template('classroom_legacy/post-update.erb'),
       mode    => '0755',
       require => Vcsrepo["${repo_root}/${name}.git"],
     }

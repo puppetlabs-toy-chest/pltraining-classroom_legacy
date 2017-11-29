@@ -9,7 +9,7 @@ class classroom_legacy::gemrc (
       owner   => 'Administrator',
       group   => 'Administrators',
       mode    => '0644',
-      content => epp('classroom/gemrc.epp', { offline => $offline }),
+      content => epp('classroom_legacy/gemrc.epp', { offline => $offline }),
     }
   }
   else {
@@ -25,7 +25,7 @@ class classroom_legacy::gemrc (
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      content => epp('classroom/gemrc.epp', { offline => $offline }),
+      content => epp('classroom_legacy/gemrc.epp', { offline => $offline }),
     }
   }
 
