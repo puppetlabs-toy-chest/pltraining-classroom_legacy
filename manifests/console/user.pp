@@ -1,6 +1,6 @@
 # creates a user in the PE Console
 #
-define classroom::console::user ( $password, $role = 'Operators' ) {
+define classroom_legacy::console::user ( $password, $role = 'Operators' ) {
 
   rbac_user { $name:
     ensure       => present,

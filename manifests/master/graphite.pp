@@ -1,4 +1,4 @@
-class classroom::master::graphite {
+class classroom_legacy::master::graphite {
   # Configure Graphite & Grafana
   include '::apache'
 
@@ -66,7 +66,7 @@ class classroom::master::graphite {
   }
   
   # because graphite is terrible and tries to manage **gcc** unless you disable packages :-/
-  # This conflicts with our own classroom::master::dependencies::rubygems class
+  # This conflicts with our own classroom_legacy::master::dependencies::rubygems class
   package { ['python-devel', 'python2-pip']:
     ensure => present,
   }

@@ -4,15 +4,15 @@
 #  * git pre-commit hook
 #  * hiera configuration
 #  * time synchronization with the classroom master
-class classroom::agent {
+class classroom_legacy::agent {
   assert_private('This class should not be called directly')
 
   # A valid clientcert is not necessarily a valid Puppet environment name!
-  validate_re($classroom::machine_name, '^(?=.*[a-z])\A[a-z0-9][a-z0-9._]+\z', "The classroom environment supports lowercase alphanumeric hostnames only. '${classroom::machine_name}' is an invalid hostname. Please ask your instructor for assistance.")
+  validate_re($classroom_legacy::machine_name, '^(?=.*[a-z])\A[a-z0-9][a-z0-9._]+\z', "The classroom environment supports lowercase alphanumeric hostnames only. '${classroom_legacy::machine_name}' is an invalid hostname. Please ask your instructor for assistance.")
 
   # windows goodies
   if $::osfamily  == 'windows' {
-    include classroom::windows
+    include classroom_legacy::windows
   }
   else {
     # /etc/puppet/ssl is confusing to have around. Sloppy. Kill.
@@ -29,38 +29,38 @@ class classroom::agent {
   }
 
   # make sure our git environment is set up and usable
-  include classroom::agent::git
+  include classroom_legacy::agent::git
 
   # Make sure that Hiera is configured for all nodes so that we
   # can work through the hiera sections without teaching them
   # how to configure it.
-  include classroom::agent::hiera
+  include classroom_legacy::agent::hiera
 
   # Ensure that the time is always synced with the classroom master
-  include classroom::agent::time
+  include classroom_legacy::agent::time
 
   # Configure basemodulepath for online or offline instruction
-  include classroom::agent::modulecache
+  include classroom_legacy::agent::modulecache
 
-  # export a classroom::user with our ssh key.
+  # export a classroom_legacy::user with our ssh key.
   #
   # !!!! THIS MAY EXPORT AN EMPTY KEY ON THE FIRST RUN !!!!
   #
   # On the second run, the ssh key will exist and so this fact will be set.
-  @@classroom::user { $::classroom::params::machine_name:
+  @@classroom_legacy::user { $::classroom_legacy::params::machine_name:
     key         => $::root_ssh_key,
-    password    => $classroom::password,
-    consolepw   => $classroom::consolepw,
-    manage_repo => $classroom::manage_repos,
+    password    => $classroom_legacy::password,
+    consolepw   => $classroom_legacy::consolepw,
+    manage_repo => $classroom_legacy::manage_repos,
   }
 
   # if we are managing git repositories, then build out all this
-  if $classroom::manage_repos {
+  if $classroom_legacy::manage_repos {
 
-    classroom::agent::workdir { $classroom::workdir:
+    classroom_legacy::agent::workdir { $classroom_legacy::workdir:
       ensure   => present,
-      username => $classroom::params::machine_name,
-      require  => Class['classroom::agent::git'],
+      username => $classroom_legacy::params::machine_name,
+      require  => Class['classroom_legacy::agent::git'],
     }
   }
 }

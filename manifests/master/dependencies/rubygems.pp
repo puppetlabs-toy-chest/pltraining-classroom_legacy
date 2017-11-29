@@ -1,4 +1,4 @@
-class classroom::master::dependencies::rubygems {
+class classroom_legacy::master::dependencies::rubygems {
   assert_private('This class should not be called directly')
 
   # These are required by rubygems compiling native code

@@ -1,4 +1,4 @@
-class classroom::params {
+class classroom_legacy::params {
   # Configure NTP (and other services) to run in standalone mode
   $offline   = false
 

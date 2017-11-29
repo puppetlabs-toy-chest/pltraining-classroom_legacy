@@ -1,4 +1,4 @@
-class classroom::agent::hosts {
+class classroom_legacy::agent::hosts {
 
   @@host { $::fqdn:
     ensure       => 'present',

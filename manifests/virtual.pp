@@ -1,53 +1,53 @@
 # common configuration for all virtual classes
-class classroom::virtual (
+class classroom_legacy::virtual (
   String                                  $control_repo,
   Optional[Pattern[/\A(?:\w*-)+(\w*)\Z/]] $event_id           = undef,
   Optional[String]                        $event_pw           = undef,
-  Variant[Enum['reduced'], Boolean]       $jvm_tuning_profile = $classroom::params::jvm_tuning_profile,
-  Boolean                                 $offline            = $classroom::params::offline,
-  Array                                   $plugin_list        = $classroom::params::plugin_list,
-) inherits classroom::params {
+  Variant[Enum['reduced'], Boolean]       $jvm_tuning_profile = $classroom_legacy::params::jvm_tuning_profile,
+  Boolean                                 $offline            = $classroom_legacy::params::offline,
+  Array                                   $plugin_list        = $classroom_legacy::params::plugin_list,
+) inherits classroom_legacy::params {
   assert_private('This class should not be called directly')
 
-  if $classroom::params::role == 'master' {
+  if $classroom_legacy::params::role == 'master' {
     include showoff
-    include classroom::master::dependencies::rubygems
-    include classroom::master::dependencies::dashboard
+    include classroom_legacy::master::dependencies::rubygems
+    include classroom_legacy::master::dependencies::dashboard
 
     # Configure Hiera and install a Hiera data file to tune PE
-    class { 'classroom::master::tuning':
+    class { 'classroom_legacy::master::tuning':
       jvm_tuning_profile => $jvm_tuning_profile,
     }
 
     # make sure we have a deployment user
-    include classroom::master::deployer
+    include classroom_legacy::master::deployer
 
     # Configure performance logging
-    include classroom::master::perf_logging
+    include classroom_legacy::master::perf_logging
 
     # Set up gitea server
-    include classroom::master::gitea
+    include classroom_legacy::master::gitea
 
-    $session_id = pick($event_pw, regsubst(String($event_id), '^(?:\w*-)+(\w*)$', '\1'), $classroom::params::session_id)
+    $session_id = pick($event_pw, regsubst(String($event_id), '^(?:\w*-)+(\w*)$', '\1'), $classroom_legacy::params::session_id)
 
     class { 'puppetfactory':
       controlrepo      => $control_repo,
       plugins          => $plugin_list,
-      gitserver        => $classroom::params::gitserver,
-      repomodel        => $classroom::params::repo_model,
-      usersuffix       => $classroom::params::usersuffix,
+      gitserver        => $classroom_legacy::params::gitserver,
+      repomodel        => $classroom_legacy::params::repo_model,
+      usersuffix       => $classroom_legacy::params::usersuffix,
       dashboard_path   => "${showoff::root}/courseware/_files/tests",
       session          => $session_id,
       master           => $fqdn,
       privileged       => false,
     }
 
-    class { 'classroom::master::codemanager':
+    class { 'classroom_legacy::master::codemanager':
       control_repo => $control_repo,
     }
 
-  } elsif $classroom::params::role == 'proxy' {
-    include classroom::proxy
+  } elsif $classroom_legacy::params::role == 'proxy' {
+    include classroom_legacy::proxy
 
   } else {
     # ensure all nodes have this user, since it's used for file ownership in places
@@ -56,12 +56,12 @@ class classroom::virtual (
     }
 
     # if we ever have universal classification for virtual agents, it will go here
-    include classroom::agent::hiera
-    include classroom::agent::packages
-    include classroom::agent::rubygems
+    include classroom_legacy::agent::hiera
+    include classroom_legacy::agent::packages
+    include classroom_legacy::agent::rubygems
 
     unless $osfamily == 'windows' {
-      include classroom::agent::postfix_ipv4
+      include classroom_legacy::agent::postfix_ipv4
 
       # enable the local yum cache configured by puppetfactory
       yumrepo { 'local':
@@ -76,12 +76,12 @@ class classroom::virtual (
   }
 
   # configure gem installs
-  class { 'classroom::gemrc':
+  class { 'classroom_legacy::gemrc':
     offline => $offline,
   }
 
   if $::osfamily == 'windows' {
-    # TODO: copied from classroom::windows; we should refactor both classes for reusability
+    # TODO: copied from classroom_legacy::windows; we should refactor both classes for reusability
     user { 'Administrator':
       ensure => present,
       groups => ['Administrators'],
@@ -97,12 +97,12 @@ class classroom::virtual (
       chocolatey_download_url => 'https://chocolatey.org/api/v2/package/chocolatey/0.10.3',
     }
 
-    include classroom::windows::disable_esc
-    include classroom::windows::enable_rdp
-    include classroom::windows::geotrust
+    include classroom_legacy::windows::disable_esc
+    include classroom_legacy::windows::enable_rdp
+    include classroom_legacy::windows::geotrust
     windows_env { 'PATH=C:\Program Files\Puppet Labs\Puppet\sys\ruby\bin': }
   }
 
   # fix augeas lens until it's updated in PE
-  include classroom::agent::augeas
+  include classroom_legacy::agent::augeas
 }

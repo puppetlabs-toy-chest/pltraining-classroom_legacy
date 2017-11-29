@@ -1,6 +1,6 @@
 # Create a few scripts for gathering metrics from a running server.
 # Requires java_args => {"Dcom.sun.management.jmxremote":"=true","Dcom.sun.management.jmxremote.port":"=9010","Dcom.sun.management.jmxremote.authenticate":"=false","Dcom.sun.management.jmxremote.local.only":"=false","Dcom.sun.management.jmxremote.ssl":"=false"}
-class classroom::master::metrics {
+class classroom_legacy::master::metrics {
   assert_private('This class should not be called directly')
 
   File {

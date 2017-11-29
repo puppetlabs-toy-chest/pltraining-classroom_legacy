@@ -1,15 +1,15 @@
 # This is a wrapper class to include all the bits needed for Fundamentals
 #
-class classroom::course::windows (
-  $offline            = $classroom::params::offline,
-  $manage_yum         = $classroom::params::manage_yum,
-  $time_servers       = $classroom::params::time_servers,
-  $jvm_tuning_profile = $classroom::params::jvm_tuning_profile,
+class classroom_legacy::course::windows (
+  $offline            = $classroom_legacy::params::offline,
+  $manage_yum         = $classroom_legacy::params::manage_yum,
+  $time_servers       = $classroom_legacy::params::time_servers,
+  $jvm_tuning_profile = $classroom_legacy::params::jvm_tuning_profile,
   $event_id           = undef,
   $event_pw           = undef,
   $version            = undef,
-) inherits classroom::params {
-  class { 'classroom::virtual':
+) inherits classroom_legacy::params {
+  class { 'classroom_legacy::virtual':
     offline            => $offline,
     jvm_tuning_profile => $jvm_tuning_profile,
     control_repo       => 'classroom-control-we.git',
@@ -18,7 +18,7 @@ class classroom::course::windows (
   }
 
   if $role == 'master' {
-    class { 'classroom::master::showoff':
+    class { 'classroom_legacy::master::showoff':
       course             => 'WindowsEssentials',
       event_id           => $event_id,
       event_pw           => $event_pw,
@@ -27,6 +27,6 @@ class classroom::course::windows (
   }
 
   if $::osfamily == 'Windows' {
-    include classroom::windows
+    include classroom_legacy::windows
   }
 }

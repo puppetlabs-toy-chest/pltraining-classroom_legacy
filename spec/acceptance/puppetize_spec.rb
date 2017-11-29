@@ -3,7 +3,7 @@ require 'spec_helper_acceptance'
 describe 'puppetize' do
     before(:all) do
       sleep_until_puppetserver_started(master)
-      on master, "echo 'node default { include classroom::course::puppetize }' > /etc/puppetlabs/code/environments/production/manifests/site.pp"
+      on master, "echo 'node default { include classroom_legacy::course::puppetize }' > /etc/puppetlabs/code/environments/production/manifests/site.pp"
     end
 
 

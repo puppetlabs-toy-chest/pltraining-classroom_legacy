@@ -87,7 +87,7 @@ include puppet_enterprise::profile::amq::broker
 
 # TODO: This is terrible bad and should be taken out and shot
 VIRTUAL_PRE = "
-class classroom {
+class classroom_legacy {
   $manage_selinux = true
   $manage_repos   = true
 }

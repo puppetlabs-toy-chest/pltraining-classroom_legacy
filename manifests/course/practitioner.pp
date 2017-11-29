@@ -1,16 +1,16 @@
 # This is a wrapper class to include all the bits needed for Practitioner
 #
-class classroom::course::practitioner (
-  $offline            = $classroom::params::offline,
-  $manage_yum         = $classroom::params::manage_yum,
-  $time_servers       = $classroom::params::time_servers,
-  $jvm_tuning_profile = $classroom::params::jvm_tuning_profile,
+class classroom_legacy::course::practitioner (
+  $offline            = $classroom_legacy::params::offline,
+  $manage_yum         = $classroom_legacy::params::manage_yum,
+  $time_servers       = $classroom_legacy::params::time_servers,
+  $jvm_tuning_profile = $classroom_legacy::params::jvm_tuning_profile,
   $event_id           = undef,
   $event_pw           = undef,
   $version            = undef,
-) inherits classroom::params {
+) inherits classroom_legacy::params {
   # just wrap the classroom class
-  class { 'classroom':
+  class { 'classroom_legacy':
     offline            => $offline,
     role               => $role,
     manage_yum         => $manage_yum,
@@ -20,10 +20,10 @@ class classroom::course::practitioner (
 
   if $role == 'master' {
     # master gets reporting scripts
-    include classroom::master::reporting_tools
-    include classroom::master::sudoers
+    include classroom_legacy::master::reporting_tools
+    include classroom_legacy::master::sudoers
 
-    class { 'classroom::master::showoff':
+    class { 'classroom_legacy::master::showoff':
       course             => 'Practitioner',
       event_id           => $event_id,
       event_pw           => $event_pw,
@@ -42,7 +42,7 @@ class classroom::course::practitioner (
     }
   }
 
-  class { 'classroom::facts':
+  class { 'classroom_legacy::facts':
     coursename => 'practitioner',
   }
 }

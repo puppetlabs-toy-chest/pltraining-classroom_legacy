@@ -1,4 +1,4 @@
-class classroom::cacert {
+class classroom_legacy::cacert {
   assert_private('This class should not be called directly')
 
   $classroom_cert = '/etc/pki/ca-trust/source/anchors/classroom.crt'
@@ -6,7 +6,7 @@ class classroom::cacert {
   if $::osfamily != 'windows' {
     file { $classroom_cert:
       ensure => file,
-      source => "${classroom::confdir}/ssl/certs/ca.pem",
+      source => "${classroom_legacy::confdir}/ssl/certs/ca.pem",
     }
 
     exec { 'trust classroom ca':

@@ -5,8 +5,8 @@
 #
 # Use:
 # 1) If an internet connection with port 123 open is available:
-# `include classroom::time`
-# for all nodes, or classify all nodes with the class classroom::time
+# `include classroom_legacy::time`
+# for all nodes, or classify all nodes with the class classroom_legacy::time
 # to ensure:
 #   a) The master is in sync with a timeserver from the ntp.org pool, and
 #   b) the agents are in sync with the master
@@ -16,17 +16,17 @@
 #   Agents will use a cron job to sync with the master every 5 minutes
 # 2) If an internet connection is not available:
 # declare the class thus for all nodes:
-# ` class { 'classroom::time': offline => 'true' }`
-# or classify all nodes using an ENC with the classroom::time class
+# ` class { 'classroom_legacy::time': offline => 'true' }`
+# or classify all nodes using an ENC with the classroom_legacy::time class
 # with the 'offline' parameter set to 'true'. This will:
 #   a) ensure that the master's internal clock is the authoritative source
 # for time, and
 #   b) all agents are synced to the master via a cron task
 
-class classroom::master::time {
+class classroom_legacy::master::time {
   assert_private('This class should not be called directly')
 
-  if $classroom::offline {
+  if $classroom_legacy::offline {
     # No point in repeatedly trying to sync if we don't have net
     $cronjob = absent
     # Set NTP service to consider itself authoritative
@@ -35,7 +35,7 @@ class classroom::master::time {
   else {
     # Forcibly sync with a timeserver - handy for resuming class without slew
     $cronjob = present
-    $servers = $classroom::time_servers
+    $servers = $classroom_legacy::time_servers
   }
 
   class { '::ntp':
@@ -45,7 +45,7 @@ class classroom::master::time {
 
   cron { 'synctime':
     ensure  => $cronjob,
-    command => "/usr/sbin/ntpdate -us ${classroom::time_servers[3]}",
+    command => "/usr/sbin/ntpdate -us ${classroom_legacy::time_servers[3]}",
     minute  => '*/5',
   }
 }

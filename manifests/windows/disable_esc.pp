@@ -1,4 +1,4 @@
-class classroom::windows::disable_esc {
+class classroom_legacy::windows::disable_esc {
   assert_private('This class should not be called directly')
 
   # Disable Internet Explorer ESC for users and admins, both

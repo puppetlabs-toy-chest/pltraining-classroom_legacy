@@ -1,16 +1,16 @@
 # This is a wrapper class to include all the bits needed for Architect
 #
-class classroom::course::architect (
-  $offline            = $classroom::params::offline,
-  $manage_yum         = $classroom::params::manage_yum,
-  $time_servers       = $classroom::params::time_servers,
-  $jvm_tuning_profile = $classroom::params::jvm_tuning_profile,
+class classroom_legacy::course::architect (
+  $offline            = $classroom_legacy::params::offline,
+  $manage_yum         = $classroom_legacy::params::manage_yum,
+  $time_servers       = $classroom_legacy::params::time_servers,
+  $jvm_tuning_profile = $classroom_legacy::params::jvm_tuning_profile,
   $event_id           = undef,
   $event_pw           = undef,
   $version            = undef,
-) inherits classroom::params {
+) inherits classroom_legacy::params {
   # just wrap the classroom class
-  class { 'classroom':
+  class { 'classroom_legacy':
     offline            => $offline,
     role               => $role,
     manage_yum         => $manage_yum,
@@ -21,18 +21,18 @@ class classroom::course::architect (
 
   if $role == 'master' {
     # Collect all hosts
-    include classroom::agent::hosts
+    include classroom_legacy::agent::hosts
 
     # set up graphite/grafana on the classroom master
-    include classroom::master::graphite
+    include classroom_legacy::master::graphite
 
     # include metrics tools for labs & demos
-    include classroom::master::metrics
+    include classroom_legacy::master::metrics
 
     # Host docker registiry on master
-    include classroom::master::docker_registry
+    include classroom_legacy::master::docker_registry
 
-    class { 'classroom::master::showoff':
+    class { 'classroom_legacy::master::showoff':
       course             => 'Architect',
       event_id           => $event_id,
       event_pw           => $event_pw,
@@ -41,26 +41,26 @@ class classroom::course::architect (
   }
   elsif $role == 'agent' {
     # tools used in class
-    include classroom::master::reporting_tools
+    include classroom_legacy::master::reporting_tools
 
     # Collect all hosts
-    include classroom::agent::hosts
+    include classroom_legacy::agent::hosts
 
     # include metrics tools for labs & demos
-    include classroom::master::metrics
+    include classroom_legacy::master::metrics
 
     # The student masters should export a balancermember
-    include classroom::master::balancermember
+    include classroom_legacy::master::balancermember
 
     # The autoscaling seems to assume that you'll sync this out from the MoM
-    include classroom::master::student_environment
+    include classroom_legacy::master::student_environment
 
     # Set up agent containers on student masters
-    include classroom::containers
+    include classroom_legacy::containers
 
   }
 
-  class { 'classroom::facts':
+  class { 'classroom_legacy::facts':
     coursename => 'architect',
   }
 }

@@ -1,5 +1,5 @@
 # Performance logging for the classroom.
-class classroom::master::perf_logging {
+class classroom_legacy::master::perf_logging {
   assert_private('This class should not be called directly')
 
   package { ['sysstat', 'tcpdump']:

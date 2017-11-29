@@ -1,9 +1,9 @@
-class classroom::master::tuning (
-  Variant[String, Boolean] $jvm_tuning_profile = $classroom::params::jvm_tuning_profile,
-) inherits classroom::params {
+class classroom_legacy::master::tuning (
+  Variant[String, Boolean] $jvm_tuning_profile = $classroom_legacy::params::jvm_tuning_profile,
+) inherits classroom_legacy::params {
   assert_private('This class should not be called directly')
 
-  require classroom::master::hiera
+  require classroom_legacy::master::hiera
 
   if $jvm_tuning_profile {
     case $jvm_tuning_profile {
@@ -28,7 +28,7 @@ class classroom::master::tuning (
       }
     }
 
-    file { "${classroom::params::confdir}/hieradata/tuning.yaml":
+    file { "${classroom_legacy::params::confdir}/hieradata/tuning.yaml":
       ensure        => file,
       owner         => 'root',
       group         => 'root',

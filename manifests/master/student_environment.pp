@@ -1,10 +1,10 @@
 # This is a temporary hack to make sure that student masters have a
 # production environment created. We will revisit this post PE3.7 release
 #
-class classroom::master::student_environment {
+class classroom_legacy::master::student_environment {
   assert_private('This class should not be called directly')
 
-  $environmentpath = "${classroom::codedir}/environments"
+  $environmentpath = "${classroom_legacy::codedir}/environments"
   $environmentname = 'production'
   $environment     = "${environmentpath}/${environmentname}"
 

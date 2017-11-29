@@ -1,4 +1,4 @@
-class classroom::gemrc (
+class classroom_legacy::gemrc (
   Boolean $offline = false,
 ) {
   # NOTE: this online version of the .gemrc should match the one in pltraining-bootstrap
@@ -30,7 +30,7 @@ class classroom::gemrc (
   }
 
   # This is a bit dirty...
-  File <| tag == 'classroom::gemrc' |> -> Package<| provider == 'gem' |>
-  File <| tag == 'classroom::gemrc' |> -> Package<| provider == 'puppet_gem' |>
-  File <| tag == 'classroom::gemrc' |> -> Package<| provider == 'puppetserver_gem' |>
+  File <| tag == 'classroom_legacy::gemrc' |> -> Package<| provider == 'gem' |>
+  File <| tag == 'classroom_legacy::gemrc' |> -> Package<| provider == 'puppet_gem' |>
+  File <| tag == 'classroom_legacy::gemrc' |> -> Package<| provider == 'puppetserver_gem' |>
 }

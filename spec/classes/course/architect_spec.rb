@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'classroom::course::architect' do
+describe 'classroom_legacy::course::architect' do
 
   parameter_matrix = [
     { :offline => true },

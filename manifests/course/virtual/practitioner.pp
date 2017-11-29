@@ -1,13 +1,13 @@
 # typing the parameters doesn't actually gain us anything, since the
 # Console doesn't provide any hinting. Subclasses validate types.
-class classroom::course::virtual::practitioner (
+class classroom_legacy::course::virtual::practitioner (
   $event_id           = undef,
   $event_pw           = undef,
-  $jvm_tuning_profile = $classroom::params::jvm_tuning_profile,
-  $offline            = $classroom::params::offline,
+  $jvm_tuning_profile = $classroom_legacy::params::jvm_tuning_profile,
+  $offline            = $classroom_legacy::params::offline,
   $version            = undef,
-) inherits classroom::params {
-  class { 'classroom::virtual':
+) inherits classroom_legacy::params {
+  class { 'classroom_legacy::virtual':
     offline            => $offline,
     jvm_tuning_profile => $jvm_tuning_profile,
     control_repo       => 'classroom-control-vp.git',
@@ -22,13 +22,13 @@ class classroom::course::virtual::practitioner (
       mode  => '0644',
     }
 
-    include classroom::master::reporting_tools
+    include classroom_legacy::master::reporting_tools
 
-    class { 'classroom::facts':
+    class { 'classroom_legacy::facts':
       coursename => 'practitioner',
     }
 
-    class { 'classroom::master::showoff':
+    class { 'classroom_legacy::master::showoff':
       course             => 'VirtualPractitioner',
       event_id           => $event_id,
       event_pw           => $event_pw,

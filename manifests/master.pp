@@ -1,6 +1,6 @@
 # Set up the master with user accounts, environments, etc
-class classroom::master (
-  $jvm_tuning_profile = $classroom::params::jvm_tuning_profile,
+class classroom_legacy::master (
+  $jvm_tuning_profile = $classroom_legacy::params::jvm_tuning_profile,
 ) {
   assert_private('This class should not be called directly')
 
@@ -11,7 +11,7 @@ class classroom::master (
   }
 
   # Install the Gitea hosted git repository service
-  include classroom::master::gitea
+  include classroom_legacy::master::gitea
 
   # Add the installer files for student agents
   # These files are cached by the build, so this will work offline
@@ -19,7 +19,7 @@ class classroom::master (
   include pe_repo::platform::windows_x86_64
 
   # Anything that needs to be top scope
-  file { "${classroom::codedir}/environments/production/manifests/classroom.pp":
+  file { "${classroom_legacy::codedir}/environments/production/manifests/classroom.pp":
     ensure => file,
     owner  => 'pe-puppet',
     group  => 'pe-puppet',
@@ -30,8 +30,8 @@ class classroom::master (
   # if configured to do so, configure repos & environments on the master. This
   # overrides the resource in the puppet_enterprise module and allows us to have
   # different users updating their own repositories.
-  if $classroom::manage_repos {
-    $environmentspath = "${classroom::codedir}/environments"
+  if $classroom_legacy::manage_repos {
+    $environmentspath = "${classroom_legacy::codedir}/environments"
 
     # 2015.2.x manages the environmentpath but doesn't allow users to write
     if versioncmp($::pe_server_version,'2015.3.0') < 0 {
@@ -47,22 +47,22 @@ class classroom::master (
       }
     }
 
-    include classroom::master::repositories
+    include classroom_legacy::master::repositories
   }
 
   # Ensure that time is set appropriately
-  include classroom::master::time
+  include classroom_legacy::master::time
 
   # Configure Hiera and install a Hiera data file to control PE configuration
-  class { 'classroom::master::tuning':
+  class { 'classroom_legacy::master::tuning':
     jvm_tuning_profile => $jvm_tuning_profile,
   }
 
   # make sure we have a deployment user
-  include classroom::master::deployer
+  include classroom_legacy::master::deployer
 
   # Setup Windows Powershell Scripts
-  include classroom::master::windows
+  include classroom_legacy::master::windows
 
   # Now create all of the users who've checked in
   Classroom::User <<||>>
@@ -72,9 +72,9 @@ class classroom::master (
   }
 
   # Add files required for labs (mostly for offline mode)
-  include classroom::master::lab_files
+  include classroom_legacy::master::lab_files
 
   # Configure performance logging
-  include classroom::master::perf_logging
+  include classroom_legacy::master::perf_logging
 
 }

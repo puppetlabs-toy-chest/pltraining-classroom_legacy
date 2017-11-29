@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'classroom::course::puppetize' do
+describe 'classroom_legacy::course::puppetize' do
 
   parameter_matrix = [
     { :offline => true},

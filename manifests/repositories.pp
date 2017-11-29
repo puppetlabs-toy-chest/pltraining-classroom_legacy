@@ -1,15 +1,15 @@
 # Manage yum (and maybe someday apt) repositories in the classroom.
-class classroom::repositories {
+class classroom_legacy::repositories {
   assert_private('This class should not be called directly')
 
-  if $classroom::manage_yum and $::osfamily == 'RedHat' {
+  if $classroom_legacy::manage_yum and $::osfamily == 'RedHat' {
 
-     $enabled = $classroom::offline ? {
+     $enabled = $classroom_legacy::offline ? {
       true  => '0',
       false => '1',
     }
 
-    yumrepo { $classroom::repositories:
+    yumrepo { $classroom_legacy::repositories:
       enabled => $enabled,
     }
     # Don't choke if another module has "include epel"

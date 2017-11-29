@@ -1,5 +1,5 @@
 # Create a classroom user on the master
-define classroom::user (
+define classroom_legacy::user (
   $password,
   $key         = undef,
   $consolepw   = undef,
@@ -40,13 +40,13 @@ define classroom::user (
   }
 
   if $consolepw {
-    classroom::console::user { $name:
+    classroom_legacy::console::user { $name:
       password => $consolepw,
     }
   }
 
   if $manage_repo {
-    classroom::master::repository { $name:
+    classroom_legacy::master::repository { $name:
       ensure => present,
     }
   }

@@ -1,4 +1,4 @@
-class classroom::master::balancermember {
+class classroom_legacy::master::balancermember {
   assert_private('This class should not be called directly')
 
   @@haproxy::balancermember { "puppet_${::fqdn}":

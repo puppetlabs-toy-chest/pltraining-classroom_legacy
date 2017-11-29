@@ -1,4 +1,4 @@
-class classroom::agent::postfix_ipv4 {
+class classroom_legacy::agent::postfix_ipv4 {
   package {'postfix':
     ensure => present,
   }

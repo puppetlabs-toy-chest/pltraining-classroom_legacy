@@ -1,12 +1,12 @@
 {
-  "name": "pltraining-classroom",
+  "name": "pltraining-classroom_legacy",
   "version": "1.8.3",
   "author": "pltraining",
-  "summary": "Manages Puppet Labs training classroom environments",
+  "summary": "Manages legacy Puppet Labs training classroom environments",
   "license": "Apache 2.0",
-  "source": "https://github.com/puppetlabs/pltraining-classroom",
-  "project_page": "https://github.com/puppetlabs/pltraining-classroom",
-  "issues_url": "https://github.com/puppetlabs/pltraining-classroom/issues",
+  "source": "https://github.com/puppetlabs/pltraining-classroom_legacy",
+  "project_page": "https://github.com/puppetlabs/pltraining-classroom_legacy",
+  "issues_url": "https://github.com/puppetlabs/pltraining-classroom_legacy/issues",
   "description": "Important! This is not the module you are looking for\n    unless you are a trainer teaching Puppet Labs training courses!\n    - Configures and sets up classroom environment for Puppet Classroom trainings.",
   "operatingsystem_support": [
     {

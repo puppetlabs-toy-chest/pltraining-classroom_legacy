@@ -1,11 +1,11 @@
 # Make sure that Hiera is configured for agent nodes so that we
 # can work through the hiera sections without teaching them
 # how to configure it.
-class classroom::agent::hiera (
-  $codedir = $classroom::params::codedir,
-  $confdir = $classroom::params::confdir,
-  $workdir = $classroom::params::workdir,
-) inherits classroom::params {
+class classroom_legacy::agent::hiera (
+  $codedir = $classroom_legacy::params::codedir,
+  $confdir = $classroom_legacy::params::confdir,
+  $workdir = $classroom_legacy::params::workdir,
+) inherits classroom_legacy::params {
   assert_private('This class should not be called directly')
 
   # Set defaults depending on os
@@ -27,7 +27,7 @@ class classroom::agent::hiera (
 
   $hieradata = "${codedir}/hieradata"
 
-  if $classroom::manage_repos {
+  if $classroom_legacy::manage_repos {
     file { $hieradata:
       ensure => link,
       # the hieradata dir is empty so forcing to

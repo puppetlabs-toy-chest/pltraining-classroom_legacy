@@ -1,16 +1,16 @@
 # This is a wrapper class to include all the bits needed for Fundamentals
 #
-class classroom::course::fundamentals (
-  $offline            = $classroom::params::offline,
-  $manage_yum         = $classroom::params::manage_yum,
-  $time_servers       = $classroom::params::time_servers,
-  $jvm_tuning_profile = $classroom::params::jvm_tuning_profile,
+class classroom_legacy::course::fundamentals (
+  $offline            = $classroom_legacy::params::offline,
+  $manage_yum         = $classroom_legacy::params::manage_yum,
+  $time_servers       = $classroom_legacy::params::time_servers,
+  $jvm_tuning_profile = $classroom_legacy::params::jvm_tuning_profile,
   $event_id           = undef,
   $event_pw           = undef,
   $version            = undef,
-) inherits classroom::params {
+) inherits classroom_legacy::params {
   # just wrap the classroom class
-  class { 'classroom':
+  class { 'classroom_legacy':
     offline            => $offline,
     role               => $role,
     manage_yum         => $manage_yum,
@@ -19,7 +19,7 @@ class classroom::course::fundamentals (
   }
 
   if $role == 'master' {
-    class { 'classroom::master::showoff':
+    class { 'classroom_legacy::master::showoff':
       course             => 'Fundamentals',
       event_id           => $event_id,
       event_pw           => $event_pw,
@@ -27,7 +27,7 @@ class classroom::course::fundamentals (
     }
   }
 
-  class { 'classroom::facts':
+  class { 'classroom_legacy::facts':
     coursename => 'fundamentals',
   }
 }

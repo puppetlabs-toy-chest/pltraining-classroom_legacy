@@ -1,6 +1,6 @@
 # This assumes that the gitea rpm and dependencies have been cached by the
 # pltraining-bootstrap module.
-class classroom::master::gitea {
+class classroom_legacy::master::gitea {
 
   # Use public IP for ec2 hosted trainings
   $gitea_address = $facts['ec2_metadata'] ? {

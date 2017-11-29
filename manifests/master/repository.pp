@@ -2,16 +2,16 @@
 # Create the user a bare repository in the repository root
 # Create a clone of that repository in the users' puppet environment
 # Add a post-commit hook to automatically update the environment on push
-define classroom::master::repository (
+define classroom_legacy::master::repository (
   $ensure      = present,
   $environment = true,
   $repo_user   = $name,
   $repo_root   = '/var/repositories',
-  $clone_root  = "${classroom::codedir}/environments",
+  $clone_root  = "${classroom_legacy::codedir}/environments",
 ) {
 
   if !( $ensure in ['present','absent'] ) {
-    fail("classroom::master::repository ensure parameter must be 'present' or 'absent'")
+    fail("classroom_legacy::master::repository ensure parameter must be 'present' or 'absent'")
   }
 
   validate_absolute_path($repo_root)

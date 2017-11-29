@@ -1,4 +1,4 @@
-class classroom::master::repositories {
+class classroom_legacy::master::repositories {
   assert_private('This class should not be called directly')
 
   File {

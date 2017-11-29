@@ -1,12 +1,12 @@
 # Dependencies for PDF rendering
 #
 # NOTE: This class is deprecated, since the bootstrap manages these resources already.
-#       Remove this along with classroom::master::showoff::legacy
+#       Remove this along with classroom_legacy::master::showoff::legacy
 #
-class classroom::master::pdf_stack {
+class classroom_legacy::master::pdf_stack {
 
   # ugh
-  if(defined('$classroom::offline') and $classroom::offline) {
+  if(defined('$classroom_legacy::offline') and $classroom_legacy::offline) {
     $enabled = '0'
   }
   else {

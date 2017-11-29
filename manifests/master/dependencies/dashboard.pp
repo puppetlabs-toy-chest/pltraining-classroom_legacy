@@ -1,4 +1,4 @@
-class classroom::master::dependencies::dashboard {
+class classroom_legacy::master::dependencies::dashboard {
   assert_private('This class should not be called directly')
 
   package { ['serverspec', 'puppetlabs_spec_helper']:

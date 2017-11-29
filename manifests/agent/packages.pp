@@ -1,4 +1,4 @@
-class classroom::agent::packages {
+class classroom_legacy::agent::packages {
 
   $packages = $osfamily ? {
     'windows' => [],

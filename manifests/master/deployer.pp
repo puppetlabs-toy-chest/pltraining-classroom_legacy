@@ -1,6 +1,6 @@
-class classroom::master::deployer (
-  $password = $classroom::params::password,
-) inherits classroom::params {
+class classroom_legacy::master::deployer (
+  $password = $classroom_legacy::params::password,
+) inherits classroom_legacy::params {
   assert_private('This class should not be called directly')
 
   rbac_user {'deployer':

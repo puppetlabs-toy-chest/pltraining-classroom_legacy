@@ -1,18 +1,18 @@
 # Configure the training classroom environment.
 #
-# classroom::agent
+# classroom_legacy::agent
 #   * set up the agent with an sshkey for root
 #   * set up a git working directory for the user
 #   * point a git remote to the repo on the puppet master
-#   * export a classroom::user account
+#   * export a classroom_legacy::user account
 #       * this depends on a root_ssh_key fact so this user
 #         account won't be exported properly on first run
 #
-# classroom::master
+# classroom_legacy::master
 #   * prepares the master's environment
 #   * creates a git repository root
 #   * creates an environment root for checking out working copies
-#   * instantiate all exported classroom::users
+#   * instantiate all exported classroom_legacy::users
 #       * creates a shell user with ssh key
 #       * creates a puppet.conf environment fragment
 #       * creates a bare repository in repo root
@@ -23,16 +23,16 @@
 #              Sets up local gitea git service.
 # $role      : What classroom role this node should play
 #
-class classroom (
-  $offline            = $classroom::params::offline,
-  $role               = $classroom::params::role,
-  $manage_yum         = $classroom::params::manage_yum,
-  $manage_repos       = $classroom::params::manage_repos,
-  $manage_selinux     = $classroom::params::manage_selinux,
-  $time_servers       = $classroom::params::time_servers,
-  $repositories       = $classroom::params::repositories,
-  $jvm_tuning_profile = $classroom::params::jvm_tuning_profile,
-) inherits classroom::params {
+class classroom_legacy (
+  $offline            = $classroom_legacy::params::offline,
+  $role               = $classroom_legacy::params::role,
+  $manage_yum         = $classroom_legacy::params::manage_yum,
+  $manage_repos       = $classroom_legacy::params::manage_repos,
+  $manage_selinux     = $classroom_legacy::params::manage_selinux,
+  $time_servers       = $classroom_legacy::params::time_servers,
+  $repositories       = $classroom_legacy::params::repositories,
+  $jvm_tuning_profile = $classroom_legacy::params::jvm_tuning_profile,
+) inherits classroom_legacy::params {
   validate_bool($offline)
   validate_bool($manage_yum)
   validate_bool($manage_repos)
@@ -40,26 +40,26 @@ class classroom (
   validate_array($time_servers)
 
   case $role {
-    'master'   : { class { 'classroom::master':
+    'master'   : { class { 'classroom_legacy::master':
                      jvm_tuning_profile => $jvm_tuning_profile,
                    }
                  }
-    'agent'    : { include classroom::agent      }
-    'adserver' : { include classroom::agent      }
-    'proxy'    : { include classroom::proxy      }
+    'agent'    : { include classroom_legacy::agent      }
+    'adserver' : { include classroom_legacy::agent      }
+    'proxy'    : { include classroom_legacy::proxy      }
     default    : { fail("Unknown role: ${role}") }
   }
 
-  include classroom::repositories
+  include classroom_legacy::repositories
 
   # configure gem installs
-  class { 'classroom::gemrc':
+  class { 'classroom_legacy::gemrc':
     offline => $offline,
   }
 
   # trust classroom CA so students can download from the master
-  include classroom::cacert
+  include classroom_legacy::cacert
 
   # fix augeas lens until it's updated in PE
-  include classroom::agent::augeas
+  include classroom_legacy::agent::augeas
 }

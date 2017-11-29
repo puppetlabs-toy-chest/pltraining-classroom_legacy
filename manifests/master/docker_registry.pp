@@ -1,4 +1,4 @@
-class classroom::master::docker_registry {
+class classroom_legacy::master::docker_registry {
   class {'docker':
     extra_parameters => '--insecure-registry localhost:5000',
   }

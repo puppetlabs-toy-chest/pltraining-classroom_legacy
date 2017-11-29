@@ -1,8 +1,8 @@
-class classroom::master::showoff::legacy (
-  String $training_user = $classroom::params::training_user,
-) inherits classroom::params {
+class classroom_legacy::master::showoff::legacy (
+  String $training_user = $classroom_legacy::params::training_user,
+) inherits classroom_legacy::params {
   require showoff
-  require classroom::master::pdf_stack
+  require classroom_legacy::master::pdf_stack
 
   # where the source files are uploaded by the instructor's tooling
   $courseware_source = "/home/${training_user}/courseware"

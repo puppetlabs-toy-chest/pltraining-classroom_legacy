@@ -6,7 +6,7 @@
 # Use:
 #   Classify all agent nodes
 #
-class classroom::agent::time {
+class classroom_legacy::agent::time {
   assert_private('This class should not be called directly')
 
   if $::osfamily == 'windows' {

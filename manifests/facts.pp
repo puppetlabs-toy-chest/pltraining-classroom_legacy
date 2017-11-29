@@ -4,14 +4,14 @@
 # Their existence also serves as a marker that initial provisioning has taken
 # place, for the small handful of items that we only want to manage once.
 #
-class classroom::facts (
+class classroom_legacy::facts (
   $coursename,
-  $role = $classroom::params::role,
-) inherits classroom::params {
+  $role = $classroom_legacy::params::role,
+) inherits classroom_legacy::params {
 
-  $dot_d = "${classroom::params::factdir}/facts.d/"
+  $dot_d = "${classroom_legacy::params::factdir}/facts.d/"
 
-  file { [ $classroom::params::factdir, $dot_d ]:
+  file { [ $classroom_legacy::params::factdir, $dot_d ]:
     ensure => directory,
   }
 

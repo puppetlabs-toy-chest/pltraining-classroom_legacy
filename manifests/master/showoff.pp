@@ -1,13 +1,13 @@
-class classroom::master::showoff (
+class classroom_legacy::master::showoff (
   Optional[String] $course   = undef,
   Optional[String] $event_id = undef,
   Optional[String] $event_pw = undef,
   Optional[String] $variant  = undef,
   Optional[String] $version  = undef,
-) inherits classroom::params {
+) inherits classroom_legacy::params {
   include stunnel
   require showoff
-  require classroom::master::dependencies::rubygems
+  require classroom_legacy::master::dependencies::rubygems
 
   if $::classroom_vm_release and versioncmp($::classroom_vm_release, '7.0') >= 0 {
     unless $course            { fail('The $course is required on VM versions 7.0 and greater.') }
@@ -90,7 +90,7 @@ class classroom::master::showoff (
     if $version  { notify { '$version is not supported on VM < 7.0': }  }
     if $event_id { notify { '$event_id is not supported on VM < 7.0': } }
 
-    include classroom::master::showoff::legacy
+    include classroom_legacy::master::showoff::legacy
   }
 
 
@@ -111,7 +111,7 @@ class classroom::master::showoff (
     client  => false,
   }
 
-  if $classroom::manage_selinux {
+  if $classroom_legacy::manage_selinux {
     # Source code in stunnel-showoff.te
     file { '/usr/share/selinux/targeted/stunnel-showoff.pp':
       ensure => file,

@@ -1,4 +1,4 @@
-class classroom::windows::enable_rdp {
+class classroom_legacy::windows::enable_rdp {
   assert_private('This class should not be called directly')
 
   registry_value { 'hklm\System\CurrentControlSet\Control\Terminal Server\fDenyTSConnections':

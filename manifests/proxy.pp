@@ -1,8 +1,8 @@
-class classroom::proxy {
+class classroom_legacy::proxy {
   assert_private('This class should not be called directly')
 
   include '::haproxy'
-  include classroom::agent::time
+  include classroom_legacy::agent::time
 
   haproxy::listen { 'puppet00':
     ipaddress => $::ipaddress,

@@ -1,10 +1,10 @@
-class classroom::windows {
+class classroom_legacy::windows {
   assert_private('This class should not be called directly')
 
-  include classroom::windows::geotrust
-  include classroom::windows::password_policy
-  include classroom::windows::disable_esc
-  include classroom::windows::alias
+  include classroom_legacy::windows::geotrust
+  include classroom_legacy::windows::password_policy
+  include classroom_legacy::windows::disable_esc
+  include classroom_legacy::windows::alias
 
   include userprefs::npp
 
@@ -22,7 +22,7 @@ class classroom::windows {
 
   ini_setting { 'certname':
     ensure  => present,
-    path    => "${classroom::params::confdir}/puppet.conf",
+    path    => "${classroom_legacy::params::confdir}/puppet.conf",
     section => 'main',
     setting => 'certname',
     value   => "${::hostname}.puppetlabs.vm",
@@ -31,16 +31,16 @@ class classroom::windows {
   # Symlink on the user desktop
   file { 'C:/Users/Administrator/Desktop/puppet_confdir':
     ensure => link,
-    target => $classroom::params::confdir,
+    target => $classroom_legacy::params::confdir,
   }
 
-  if $classroom::role == 'adserver' {
-    class { 'classroom::windows::adserver':
-      ad_domainname   => $classroom::ad_domainname,
-      ad_dsrmpassword => $classroom::ad_dsrmpassword,
+  if $classroom_legacy::role == 'adserver' {
+    class { 'classroom_legacy::windows::adserver':
+      ad_domainname   => $classroom_legacy::ad_domainname,
+      ad_dsrmpassword => $classroom_legacy::ad_dsrmpassword,
     }
     # Export AD server IP to be DNS server for agents
-    @@classroom::windows::dns_server { 'primary_ip':
+    @@classroom_legacy::windows::dns_server { 'primary_ip':
       ip => $::ipaddress,
     }
   }

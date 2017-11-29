@@ -5,7 +5,7 @@
 # $name: path of workdir
 # $username: the username for git operations. Defaults to $name
 # $populate: add starter code
-define classroom::agent::workdir (
+define classroom_legacy::agent::workdir (
   $ensure     = 'present',
   $username   = $name,
   $populate   = true,
@@ -45,7 +45,7 @@ define classroom::agent::workdir (
       ensure => directory,
     }
 
-    file { "${classroom::codedir}/modules":
+    file { "${classroom_legacy::codedir}/modules":
       ensure => link,
       target => "${workdir}/modules",
       force  => true,

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'classroom::course::virtual::intro' do
+describe 'classroom_legacy::course::virtual::intro' do
 
   context "applied to master" do
     let(:pre_condition) {

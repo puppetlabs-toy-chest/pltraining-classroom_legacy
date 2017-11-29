@@ -1,4 +1,4 @@
-class classroom::windows::alias {
+class classroom_legacy::windows::alias {
 
   assert_private('This class should not be called directly')
 

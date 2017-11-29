@@ -1,4 +1,4 @@
-class classroom::agent::augeas {
+class classroom_legacy::agent::augeas {
   if $facts.dig('augeas', 'version') == '1.4.0' {
     # The version of Augeas that ships with PE doesn't support current krb5.conf
     # until it's updated, install a new lens.

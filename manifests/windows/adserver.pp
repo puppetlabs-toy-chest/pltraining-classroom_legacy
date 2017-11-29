@@ -1,7 +1,7 @@
-class classroom::windows::adserver (
-  $ad_domainname = $classroom::params::ad_domainname,
-  $ad_dsrmpassword = $classroom::params::ad_dsrmpassword,
-) inherits classroom::params {
+class classroom_legacy::windows::adserver (
+  $ad_domainname = $classroom_legacy::params::ad_domainname,
+  $ad_dsrmpassword = $classroom_legacy::params::ad_dsrmpassword,
+) inherits classroom_legacy::params {
 
 	# This class will configure an Active Directory server, and also set up a fileshare to host an installer
   # for a lab. This will require two (automatic) reboots, once after installing WMF5 (Powershell 5), and

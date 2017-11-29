@@ -1,4 +1,4 @@
-class classroom::containers {
+class classroom_legacy::containers {
   # Add parameter to allow registry without SSL
   class {'docker':
     extra_parameters => '--insecure-registry master.puppetlabs.vm:5000',

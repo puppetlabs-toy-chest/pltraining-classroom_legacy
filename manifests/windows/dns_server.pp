@@ -1,5 +1,5 @@
 # Set a DNS server on the windows agents
-define classroom::windows::dns_server (
+define classroom_legacy::windows::dns_server (
   $ip = '8.8.8.8',
 ) {
     # Only run on windows

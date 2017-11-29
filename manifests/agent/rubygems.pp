@@ -1,4 +1,4 @@
-class classroom::agent::rubygems {
+class classroom_legacy::agent::rubygems {
   assert_private('This class should not be called directly')
 
   package { [ 'rspec-puppet', 'puppetlabs_spec_helper' ]:

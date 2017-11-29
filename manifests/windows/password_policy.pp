@@ -1,4 +1,4 @@
-class classroom::windows::password_policy {
+class classroom_legacy::windows::password_policy {
   assert_private('This class should not be called directly')
 
   # Disable draconian password policy
