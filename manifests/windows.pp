@@ -45,6 +45,6 @@ class classroom_legacy::windows {
     }
   }
   else {
-    Classroom::Windows::Dns_server <<||>>
+    Classroom_legacy::Windows::Dns_server <<||>>
   }
 }

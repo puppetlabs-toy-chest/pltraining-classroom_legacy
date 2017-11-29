@@ -65,7 +65,7 @@ class classroom_legacy::master (
   include classroom_legacy::master::windows
 
   # Now create all of the users who've checked in
-  Classroom::User <<||>>
+  Classroom_legacy::User <<||>>
   # But prevent students from overwriting the login ssh key
   user { 'training':
     ensure => present,
