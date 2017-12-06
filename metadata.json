@@ -7,7 +7,7 @@
   "source": "https://github.com/puppetlabs/pltraining-classroom_legacy",
   "project_page": "https://github.com/puppetlabs/pltraining-classroom_legacy",
   "issues_url": "https://github.com/puppetlabs/pltraining-classroom_legacy/issues",
-  "description": "Important! This is not the module you are looking for\n    unless you are a trainer teaching Puppet Labs training courses!\n    - Configures and sets up classroom environment for Puppet Classroom trainings.",
+  "description": "Important! This is not the module you are looking for\nThis is the legacy classroom configuration and diverged from pltraining/classroom at v1.8.3.",
   "operatingsystem_support": [
     {
       "operatingsystem": "CentOS",
