@@ -1,6 +1,6 @@
 {
   "name": "pltraining-classroom_legacy",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "author": "pltraining",
   "summary": "Manages legacy Puppet Labs training classroom environments",
   "license": "Apache 2.0",
